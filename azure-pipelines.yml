@@ -6,8 +6,7 @@
 trigger:
 - main
 
-pool:
-  vmImage: Grayden's Raider Laptop
+pool: Grayden's Raider Laptop
 
 variables:
   aws.rolecredential.maxduration: "3600" # Can be set from 900 - 43200s
