@@ -17,8 +17,8 @@ steps:
       displayName: "Running aws-cli get-caller-identity"
       # continueOnError: true # If you need the pipeline to succeed
       inputs:
-        awsCredentials: "aws-oidc-federation"
-        regionName: 'aws-region-name'
+        awsCredentials: "aws-role-azure-devops-route-53-access"
+        regionName: 'ca-central-1'
         awsCommand: 'sts'
         awsSubCommand: 'get-caller-identity'
 
