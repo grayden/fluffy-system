@@ -33,6 +33,12 @@ steps:
           Write-Host "##vso[task.setvariable variable=AwsSecretAccessKey;issecret=true]($Env::AWS_SECRET_ACCESS_KEY)"
           Write-Host "##vso[task.setvariable variable=AwsSessionToken;issecret=true]($Env::AWS_SESSION_TOKEN)"
 
+    - script: |
+          echo "Access key ID: ${{ FetchAWSCredentials.AwsAccessKeyId }}"
+          echo "Secret Access Key: ${{ FetchAWSCredentials.AwsSecretAccessKey }}"
+          echo "Session Token: ${{ FetchAWSCredentials.AwsSessionToken }}"
+      
+
     - task: AWSPowerShellModuleScript@1
       displayName: "Running script"
       inputs:
