@@ -21,11 +21,12 @@ steps:
         awsCommand: 'route53'
         awsSubCommand: 'list-hosted-zones'
 
-    - task: AWSToolsforPowerShell@1
+    - task: AWSPowerShellModuleScript@1
       displayName: "Running script"
       inputs:
         awsCredentials: "aws-role-azure-devops-route-53-access"
-        scriptPath: "ListZones.ps1"
+        regionName: 'ca-central-1'
+        filePath: "ListZones.ps1"
 
     - task: NodeTool@0
       inputs:
