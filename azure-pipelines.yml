@@ -13,7 +13,7 @@ variables:
   
 steps:
     - task: AWSCLI@1
-      displayName: "Running route54 list hosted zones"
+      displayName: "Running route53 list hosted zones"
       # continueOnError: true # If you need the pipeline to succeed
       inputs:
         awsCredentials: "aws-role-azure-devops-route-53-access"
