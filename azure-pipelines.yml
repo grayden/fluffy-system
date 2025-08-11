@@ -1,0 +1,33 @@
+# Node.js
+# Build a general Node.js project with npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  aws.rolecredential.maxduration: "3600" # Can be set from 900 - 43200s
+  
+steps:
+    - task: AWSCLI@1
+      displayName: "Running aws-cli get-caller-identity"
+      # continueOnError: true # If you need the pipeline to succeed
+      inputs:
+        awsCredentials: "aws-oidc-federation"
+        regionName: 'aws-region-name'
+        awsCommand: 'sts'
+        awsSubCommand: 'get-caller-identity'
+
+    - task: NodeTool@0
+      inputs:
+        versionSpec: '20.x'
+      displayName: 'Install Node.js'
+
+    - script: |
+        npm install
+        npm run build
+      displayName: 'npm install and build'
