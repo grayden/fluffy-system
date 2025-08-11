@@ -21,14 +21,11 @@ steps:
         awsCommand: 'route53'
         awsSubCommand: 'list-hosted-zones'
 
-    - task: AWSCLI@1
-      displayName: "Running get caller identity"
-      # continueOnError: true # If you need the pipeline to succeed
+    - task: AWSToolsforPowerShell@1
+      displayName: "Running script"
       inputs:
         awsCredentials: "aws-role-azure-devops-route-53-access"
-        regionName: 'ca-central-1'
-        awsCommand: 'sts'
-        awsSubCommand: 'get-caller-identity'
+        scriptPath: "ListZones.ps1"
 
     - task: NodeTool@0
       inputs:
