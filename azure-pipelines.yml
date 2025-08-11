@@ -22,6 +22,18 @@ steps:
         awsSubCommand: 'list-hosted-zones'
 
     - task: AWSPowerShellModuleScript@1
+      name: FetchAWSCredentials
+      displayName: "Fetch AWS Credentials"
+      inputs:
+        awsCredentials: "aws-role-azure-devops-route-53-access"
+        regionName: 'ca-central-1'
+        scriptType: inline
+        inlineScript: |
+          Write-Host "##vso[task.setvariable variable=AwsAccessKeyId;isoutput=true]($Env::AWS_ACCESS_KEY_ID)"        
+          Write-Host "##vso[task.setvariable variable=AwsSecretAccessKey;issecret=true]($Env::AWS_SECRET_ACCESS_KEY)"
+          Write-Host "##vso[task.setvariable variable=AwsSessionToken;issecret=true]($Env::AWS_SESSION_TOKEN)"
+
+    - task: AWSPowerShellModuleScript@1
       displayName: "Running script"
       inputs:
         awsCredentials: "aws-role-azure-devops-route-53-access"
