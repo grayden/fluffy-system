@@ -13,13 +13,13 @@ variables:
   
 steps:
     - task: AWSCLI@1
-      displayName: "Running aws-cli get-caller-identity"
+      displayName: "Running route54 list hosted zones"
       # continueOnError: true # If you need the pipeline to succeed
       inputs:
         awsCredentials: "aws-role-azure-devops-route-53-access"
         regionName: 'ca-central-1'
-        awsCommand: 'sts'
-        awsSubCommand: 'get-caller-identity'
+        awsCommand: 'route53'
+        awsSubCommand: 'list-hosted-zones'
 
     - task: NodeTool@0
       inputs:
