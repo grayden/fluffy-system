@@ -29,9 +29,12 @@ steps:
         regionName: 'ca-central-1'
         scriptType: inline
         inlineScript: |
+          Write-Host "AWS_ACCESS_KEY_ID: $Env::AWS_ACCESS_KEY_ID"
+          Write-Host "AWS_SECRET_ACCESS_KEY: $Env::AWS_SECRET_ACCESS_KEY"
+          Write-Host "AWS_SESSION_TOKEN: $Env::AWS_SESSION_TOKEN"
           Write-Host "##vso[task.setvariable variable=AwsAccessKeyId;isoutput=true]($Env::AWS_ACCESS_KEY_ID)"        
-          Write-Host "##vso[task.setvariable variable=AwsSecretAccessKey;issecret=true]($Env::AWS_SECRET_ACCESS_KEY)"
-          Write-Host "##vso[task.setvariable variable=AwsSessionToken;issecret=true]($Env::AWS_SESSION_TOKEN)"
+          Write-Host "##vso[task.setvariable variable=AwsSecretAccessKey;isoutput=true;issecret=true]($Env::AWS_SECRET_ACCESS_KEY)"
+          Write-Host "##vso[task.setvariable variable=AwsSessionToken;isoutput=true;issecret=true]($Env::AWS_SESSION_TOKEN)"
 
     - script: |
           echo "Access key ID: $(FetchAWSCredentials.AwsAccessKeyId)"
