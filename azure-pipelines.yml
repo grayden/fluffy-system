@@ -42,11 +42,11 @@ steps:
           echo "Session Token: $(FetchAWSCredentials.AwsSessionToken)"
       
 
-    - task: AzurePowerShell@5
+    - task: PowerShell@2
       displayName: "Running script"
       inputs:
-        scriptType: 'FilePath'
-        scriptPath: 'ListZones.ps1'
+        targetType: 'filePath'
+        filePath: 'ListZones.ps1'
         sciptArguments:
           -awsAccessKeyId $(FetchAWSCredentials.AwsAccessKeyId)
           -awsSecretAccessKey $(FetchAWSCredentials.AwsSecretAccessKey)
