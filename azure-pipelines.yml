@@ -47,10 +47,7 @@ steps:
       inputs:
         targetType: 'filePath'
         filePath: 'ListZones.ps1'
-        sciptArguments:
-          -awsAccessKeyId $(FetchAWSCredentials.AwsAccessKeyId)
-          -awsSecretAccessKey $(FetchAWSCredentials.AwsSecretAccessKey)
-          -awsSessionToken $(FetchAWSCredentials.AwsSessionToken)
+        arguments: -awsAccessKeyId $(FetchAWSCredentials.AwsAccessKeyId) -awsSecretAccessKey $(FetchAWSCredentials.AwsSecretAccessKey) -awsSessionToken $(FetchAWSCredentials.AwsSessionToken)
 
     - task: NodeTool@0
       inputs:
