@@ -42,12 +42,15 @@ steps:
           echo "Session Token: $(FetchAWSCredentials.AwsSessionToken)"
       
 
-    - task: AWSPowerShellModuleScript@1
+    - task: AzurePowerShell@5
       displayName: "Running script"
       inputs:
-        awsCredentials: "aws-role-azure-devops-route-53-access"
-        regionName: 'ca-central-1'
-        filePath: "ListZones.ps1"
+        scriptType: 'FilePath'
+        scriptPath: 'ListZones.ps1'
+        sciptArguments:
+          -awsAccessKeyId $(FetchAWSCredentials.AwsAccessKeyId)
+          -awsSecretAccessKey $(FetchAWSCredentials.AwsSecretAccessKey)
+          -awsSessionToken $(FetchAWSCredentials.AwsSessionToken)
 
     - task: NodeTool@0
       inputs:
